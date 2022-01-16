@@ -1,5 +1,5 @@
 from django.urls import path
-import views
+from . import views
 
 urlpatterns = [
     path('images/get-all', views.get_all__image, name="all-images"),
