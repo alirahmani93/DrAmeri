@@ -1,0 +1,25 @@
+{% load static %}
+{% load cache %}
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Mammo</title>
+</head>
+<body>
+
+{% include 'header.html' %}
+
+{% block content %}
+{% endblock content %}
+
+{% include 'footer.html' %}
+
+<div onclick="run">
+    {% include 'loading.html' %}
+</div>
+
+</body>
+</html>
