@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if wrong %}
+<head> <meta http-equiv="refresh" content="20"> </head>
+
+{% endif %}
+
+
+<style>
+    /* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  }
+ .btn-download {
+ width:100%;
+ background-color:red;
+ color:white;
+ font-size:30px"
+}
+.tabcontent {
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+* {box-sizing: border-box;}
+
+.img-zoom-container {
+  position: relative;
+}
+
+.img-zoom-lens {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  /*set the size of the lens:*/
+  width: 40px;
+  height: 40px;
+}
+
+.img-zoom-result {
+  border: 1px solid #d4d4d4;
+  /*set the size of the result div:*/
+  width: 300px;
+  height: 300px;
+}
+
+* {box-sizing: border-box;}
+
+.img-magnifier-container {
+  position: relative;
+}
+
+.img-magnifier-glass {
+  position: absolute;
+  border: 10px solid #000;
+  border-radius: 40%;
+  cursor: none;
+  /*Set the size of the magnifier glass:*/
+  width: 300px;
+  height: 300px;
+}
+</style>
+{% if not wrong %}
+
+<div align="center">
+    <div class="tab" align="center">
+        <button class="tablinks active" onclick="openCity(event, 'CM model')">CM Model</button>
+        <button class="tablinks" onclick="openCity(event, 'M Model')">M Model</button>
+        <button class="tablinks" onclick="openCity(event, 'C Model')">C Model</button>
+    </div>
+</div>
+
+<!-- Tab content -->
+<div class="img-magnifier-container" id="defaultOpen">
+    <div id="CM model" class="tabcontent" style="display:block" align="center">
+        <img id='myimageCM' data-toggle="modal" data-target="#myModal" src="{{results.CMimage.url}}"
+             alt='results.CMimage'/>
+        <a href="{{results.CMimage.url}}" download="{{results.CMimage}}">
+            <div class="col-md-4">
+                <button class="btn-download">Download</button>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="img-magnifier-container">
+    <div id="M Model" class="tabcontent" align="center">
+        <img id='myimageM' data-toggle="modal" data-target="#myModal" src="{{results.Mimage.url}}"
+             alt='{{results.Mimage}}'/>
+        <a href="{{results.Mimage.url}}" download="{{results.Mimage}}">
+            <div class="col-md-4">
+                <button class="btn-download">Download</button>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="img-magnifier-container">
+    <div id="C Model" class="tabcontent" align="center">
+        <div data-role="imagemagnifier" data-magnifier-mode="glass" data-lens-type="circle"
+            data-lens-size="200">
+
+            <img id='myimageC' data-toggle="modal" data-target="#myModal" src="{{results.Cimage.url}}"
+                alt='{{results.Cimage}}'/>
+        </div>
+        <a href="{{results.Cimage.url}}" download="{{results.Cimage}}">
+            <div class="col-md-4">
+                <button class="btn-download">Download</button>
+            </div>
+        </a>
+    </div>
+</div>
+{% endif %}
+
+<script>
+    function openCity(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+<script>
+    // Get the element with id="defaultOpen" and click on it
+    {% comment %} document.getElementsByClassName("CM model").click(); {% endcomment %}
+</script>
+
+<!-- Magnifier JS-->
+<script>
+    function magnify(imgID, zoom) {
+  var img, glass, w, h, bw;
+  img = document.getElementById(imgID);
+
+  /* Create magnifier glass: */
+  glass = document.createElement("DIV");
+  glass.setAttribute("class", "img-magnifier-glass");
+
+  /* Insert magnifier glass: */
+  img.parentElement.insertBefore(glass, img);
+
+  /* Set background properties for the magnifier glass: */
+  glass.style.backgroundImage = "url('" + img.src + "')";
+  glass.style.backgroundRepeat = "no-repeat";
+  glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+  bw = 3;
+  w = glass.offsetWidth / 2;
+  h = glass.offsetHeight / 2;
+
+  /* Execute a function when someone moves the magnifier glass over the image: */
+  glass.addEventListener("mousemove", moveMagnifier);
+  img.addEventListener("mousemove", moveMagnifier);
+
+  /*and also for touch screens:*/
+  glass.addEventListener("touchmove", moveMagnifier);
+  img.addEventListener("touchmove", moveMagnifier);
+  function moveMagnifier(e) {
+    var pos, x, y;
+    /* Prevent any other actions that may occur when moving over the image */
+    e.preventDefault();
+    /* Get the cursor's x and y positions: */
+    pos = getCursorPos(e);
+    x = pos.x;
+    y = pos.y;
+    /* Prevent the magnifier glass from being positioned outside the image: */
+    if (x > img.width - (w / zoom)) {x = img.width - (w / zoom);}
+    if (x < w / zoom) {x = w / zoom;}
+    if (y > img.height - (h / zoom)) {y = img.height - (h / zoom);}
+    if (y < h / zoom) {y = h / zoom;}
+    /* Set the position of the magnifier glass: */
+    glass.style.left = (x - w) + "px";
+    glass.style.top = (y - h) + "px";
+    /* Display what the magnifier glass "sees": */
+    glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+  }
+
+  function getCursorPos(e) {
+    var a, x = 0, y = 0;
+    e = e || window.event;
+    /* Get the x and y positions of the image: */
+    a = img.getBoundingClientRect();
+    /* Calculate the cursor's x and y coordinates, relative to the image: */
+    x = e.pageX - a.left;
+    y = e.pageY - a.top;
+    /* Consider any page scrolling: */
+    x = x - window.pageXOffset;
+    y = y - window.pageYOffset;
+    return {x : x, y : y};
+  }
+}
+</script>
+
+<script>magnify("myimageCM", 3.5);</script>
+<script>magnify("myimageM", 3.5);</script>
+<script>magnify("myimageC", 3.5);</script>
+
+{% endblock %}
