@@ -2,8 +2,10 @@ version: "3.7"
 
 services:
   django_web:
+    # image:smartmammo:2.1.0
     build: .
     command: >
+      
       bash -c "python3 -m pip install --upgrade pip &&\
        pip install gunicorn &&\
        python3 manage.py migrate &&\
