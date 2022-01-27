@@ -21,8 +21,8 @@ def DETECTING(SourceInputImageDir, M_WindowShape, C_WindowShape):
     # print("t1",t)
     z = t
 
-    M_NetDir = 'app/CNN.h5'
-    C_NetDir = 'app/CNN.h5'
+    M_NetDir = 'app/CNN_M.h5'
+    C_NetDir = 'app/CNN_C.h5'
     ResultDir_C = 'output'
     TemplatePachDir = 'temp'
     ResultDir_M = 'output'

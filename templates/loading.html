@@ -22,77 +22,141 @@
 100% {transform: rotate(360deg);}
 }
 
-html, body {
-  width: 100%;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
-.bar2 {
+span {
   position: relative;
-  height: 2px;
-  width: 500px;
-  margin: 0 auto;
-  background: #fff;
-  margin-top: 150px;
-}
-
-.circle2 {
-  position: absolute;
-  top: -30px;
-  margin-left: -30px;
-  height: 60px;
-  width: 60px;
-  left: 0;
-  background: #fff;
-  border-radius: 30%;
-  -webkit-animation: move 5s infinite;
-}
-
-p2 {
-  position: absolute;
-  top: -35px;
-  right: -85px;
+  top: 0.63em;
+  display: inline-block;
   text-transform: uppercase;
+  opacity: 0;
+  transform: rotateX(-90deg);
+}
 
+.let1 {
+  animation: drop 3.0s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+.let2 {
+  animation: drop 3.1s ease-in-out infinite;
+  animation-delay: 1.3s;
+}
+
+.let3 {
+  animation: drop 3.2s ease-in-out infinite;
+  animation-delay: 1.4s;
+}
+
+.let4 {
+  animation: drop 3.3s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+.let5 {
+  animation: drop 3.4s ease-in-out infinite;
+  animation-delay: 1.6s;
+}
+
+.let6 {
+  animation: drop 3.5s ease-in-out infinite;
+  animation-delay: 1.7s;
+}
+
+.let7 {
+  animation: drop 3.6s ease-in-out infinite;
+  animation-delay: 1.8s;
+}
+
+.let8 {
+  animation: drop 3.7s ease-in-out infinite;
+  animation-delay: 1.8s;
+}
+
+.let9 {
+  animation: drop 3.8s ease-in-out infinite;
+  animation-delay: 1.8s;
+}
+
+.let10 {
+  animation: drop 3.9s ease-in-out infinite;
+  animation-delay: 1.8s;
+}
+
+.let11 {
+  animation: drop 3.9s ease-in-out infinite;
+  animation-delay: 1.8s;
+}
+
+@keyframes drop {
+    10% {
+        opacity: 0.5;
+    }
+    20% {
+        opacity: 1;
+        top: 3.78em;
+        transform: rotateX(-360deg);
+    }
+    80% {
+        opacity: 1;
+        top: 3.78em;
+        transform: rotateX(-360deg);
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        top: 6.94em
+    }
+}
 
 </style>
 
 {% if wrong %}
-<!--<div align="center" style=" height: 30%;border: 8px solid #162534;font-size: 36px;color:red;background-color:white; ">-->
-<!--    <hr>-->
+<div align="center" style="font-size: 36px;color:white; ">
+    <h1>
+        <span class="let1">P</span>
+        <span class="let2">R</span>
+        <span class="let3">O</span>
+        <span class="let4">S</span>
+        <span class="let5">S</span>
+        <span class="let6">E</span>
+        <span class="let8">S</span>
+        <span class="let9">I</span>
+        <span class="let10">N</span>
+        <span class="let11">G</span>
+    </h1>
+    <br><br><br><br>
+    <br>
+    <h2 style="color:white"> Thank you for your patience. </h2>
 
-<!--    <h1> The image is being processed! </h1>-->
-<!--    <h2 style="color:green"> Thank you for your patience. </h2>-->
-<!--</div>-->
-
-<div class="bar2">
-  <div class="circle2"></div>
-  <p2>PROCESSING</p2>
 </div>
 
 {% endif %}
 <div id="circle" style="visibility: hidden;">
-    <div class="loader">
-        <div class="loader">
-            <div class="loader">
-                <div class="loader">
-
-                </div>
-            </div>
-        </div>
-    </div>
+    <!--    <div class="loader">-->
+    <!--        <div class="loader">-->
+    <!--            <div class="loader">-->
+    <!--                <div class="loader">-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <h2 style="color:red;">
+        <span class="let1">U</span>
+        <span class="let2">P</span>
+        <span class="let3">L</span>
+        <span class="let4">O</span>
+        <span class="let5">D</span>
+        <span class="let6">I</span>
+        <span class="let7">N</span>
+        <span class="let8">G</span>
+    </h2>
 </div>
-<!--<div class="bar">-->
-<!--  <div class="circle"></div>-->
-<!--  <p>UPLOADING</p>-->
-<!--</div>-->
 
 <script>
    function ShowLoader() {
      document.getElementById("circle").style.visibility = "visible";
      }
-
 
 
 </script>
