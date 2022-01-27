@@ -25,19 +25,19 @@
                 {% csrf_token %}
                 <input class="form-control" name="image" required type="file">
                 <div class="col-md-4">
-                    <label class="form-label">VAR 1</label>
+                    <label class="form-label">Mass Window</label>
                     <div class="range-wrap">
                         <div class="range-value" id="rangeV"></div>
                         <label for="range">{% csrf_token %}</label><input id="range" max="500" min="50" name='min'
-                                                                          type="range" value="150">
+                                                                          type="range" value="350">
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">VAR 2</label>
+                    <label class="form-label">Calc. Widow</label>
                     <div class="range-wrap">
                         <div class="range-value" id="rangeVV"></div>
                         {% csrf_token %}
-                        <input id="rangee" max="500" min="50" name='max' type="range" value="350">
+                        <input id="rangee" max="500" min="50" name='max' type="range" value="250">
 
                     </div>
                 </div>

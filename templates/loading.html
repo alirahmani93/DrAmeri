@@ -22,14 +22,55 @@
 100% {transform: rotate(360deg);}
 }
 
-</style>
-{% if wrong %}
-<div align="center" style=" height: 30%;border: 8px solid #162534;font-size: 36px;color:red;background-color:white; ">
-    <hr>
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
 
-    <h1> The image is being processed! </h1>
-    <h2 style="color:green"> Thank you for your patience. </h2>
+.bar2 {
+  position: relative;
+  height: 2px;
+  width: 500px;
+  margin: 0 auto;
+  background: #fff;
+  margin-top: 150px;
+}
+
+.circle2 {
+  position: absolute;
+  top: -30px;
+  margin-left: -30px;
+  height: 60px;
+  width: 60px;
+  left: 0;
+  background: #fff;
+  border-radius: 30%;
+  -webkit-animation: move 5s infinite;
+}
+
+p2 {
+  position: absolute;
+  top: -35px;
+  right: -85px;
+  text-transform: uppercase;
+
+
+</style>
+
+{% if wrong %}
+<!--<div align="center" style=" height: 30%;border: 8px solid #162534;font-size: 36px;color:red;background-color:white; ">-->
+<!--    <hr>-->
+
+<!--    <h1> The image is being processed! </h1>-->
+<!--    <h2 style="color:green"> Thank you for your patience. </h2>-->
+<!--</div>-->
+
+<div class="bar2">
+  <div class="circle2"></div>
+  <p2>PROCESSING</p2>
 </div>
+
 {% endif %}
 <div id="circle" style="visibility: hidden;">
     <div class="loader">
@@ -42,11 +83,16 @@
         </div>
     </div>
 </div>
+<!--<div class="bar">-->
+<!--  <div class="circle"></div>-->
+<!--  <p>UPLOADING</p>-->
+<!--</div>-->
 
 <script>
    function ShowLoader() {
      document.getElementById("circle").style.visibility = "visible";
      }
+
 
 
 </script>
